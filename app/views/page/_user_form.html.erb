@@ -1,0 +1,97 @@
+
+  <div class="file-field pb-3">
+    <%= form.label :new_profile_picture %>
+    <br>
+    <% if @user.profile_picture.attached? %>
+      <%= image_tag @user.profile_picture.variant(resize: "400x400"),
+        style: "height: 100px; width: 100px; border-radius: 50px; object-fit: cover;",
+        id: "new_profile_picture_prev",
+        class: "my-2" %>
+    <% else %>
+      <%= image_tag "/default_user.png",
+        style: "height: 100px; width: 100px; border-radius: 50px; object-fit: cover;",
+        id: "new_profile_picture_prev",
+        class: "my-2" %>
+    <% end %>
+    <br>
+    <%= form.check_box :remove_profile_picture %>
+    <%= form.label :remove_profile_picture %>
+    <br>
+    <%= form.file_field :new_profile_picture, id: "new_profile_picture" %>
+  </div>
+
+  <div class="input-field py-2">
+    <%= form.label :name %>
+    <br>
+    <i class="fa fa-user "></i>
+    <%= form.text_field :name, {:placeholder => "15字以内で入力してください。"} %>
+  </div>
+
+  <div class="input-field py-2">
+    <%= form.label :email %>
+    <br>
+    <i class="fa fa-envelope "></i>
+    <%= form.email_field :email, {:placeholder => "xxx@example.com" } %>
+  </div>
+
+  <% if @user.new_record? %>
+    <div class="input-field py-2">
+      <%= form.label :password %>
+      <br>
+      <i class="fa fa-lock "></i>
+      <%= form.password_field :password %>
+    </div>
+  <% end %>
+
+  <div class="input-field py-2">
+    <%= form.label :birthday, for: "user_birthday_li" %>
+    <br>
+    <%= form.date_select :birthday,
+    start_year: 1900, end_year: Time.current.year - 18,
+    use_month_numbers: true %>
+  </div>
+
+  <div class="check-field py-2">
+    <%= User.human_attribute_name(:gender) %>
+    <br>
+    <%= form.label :gender_1 %>
+    <%= form.radio_button :gender, 1 %>
+    <%= form.label :gender_2 %>
+    <%= form.radio_button :gender, 2 %>
+  </div>
+
+  <div class="input-field py-2">
+    <%= form.label :area %>
+    <br>
+    <%= form.select :area, User.areas.keys, { prompt: '選択してください' } %>
+  </div>
+
+  <div class="input-field py-2">
+    <%= form.label :occupation %>
+    <br>
+    <%= form.select :occupation, User.occupations.keys, { prompt: '選択してください' } %>
+  </div>
+
+  <div class="input-field py-2">
+    <%= form.label :voice %>
+    <br>
+    <i class="fa fa-comment "></i>
+    <%= form.text_field :voice %>
+  </div>
+
+  <div class="input-field py-2">
+    <%= form.label :introduction %>
+    <br>
+    <%= form.text_area :introduction, {:placeholder => "400字以内で入力してください。"} %>
+  </div>
+
+  <% if controller.kind_of?(Admin::UsersController) %>
+    <div class="check-field py-2">
+      <%= form.label :administrator %>
+      <%= form.check_box :administrator %>
+    </div>
+  <% end %>
+
+  <div class="submit-actions py-4">
+    <%= form.submit %>
+  </div>

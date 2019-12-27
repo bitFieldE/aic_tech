@@ -1,0 +1,12 @@
+<%= Blog.status_text(blog.status) %> |
+<%= blog.posted_at.strftime("%Y %m/%d %H:%M %S") %> |
+<% if current_user && current_user.votable_for?(blog) %>
+  <%= link_to [:like, blog], method: :patch, class: "like-button", remote: true do %>
+    <i class="fa fa-heart-o "></i>
+  <% end %>
+<% else %>
+  <%= link_to [:unlike, blog], method: :patch, class: "like-button", remote: true do %>
+    <i class="fa fa-heart "></i>
+  <% end %>
+<% end %>
+<%= link_to blog.likes.count.to_s + "件", :liked_blog if current_user && current_user.gender == blog.author.gender %>

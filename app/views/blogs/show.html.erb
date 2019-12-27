@@ -1,0 +1,14 @@
+<% @page_title = "ブログ詳細" %>
+<div class="px-4 pb-3">
+  <% if current_user.id == @blog.author.id %>
+    <%= link_to "戻る", :account, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "戻る", @blog.author, class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "マイブログ", blogs_path, class: "btn btn-primary" %>
+</div>
+<h2 class="pb-2"><%= @blog.author.name + "さんのブログ" %></h2>
+
+<table id="blog_<%= @blog.id %>" class="blog-details shadow mb-4 pb-5 col-xs-11 col-sm-10 col-md-7">
+  <%= render partial: "blog_content" %>
+</table>

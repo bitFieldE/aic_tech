@@ -1,0 +1,11 @@
+<% @page_title = "ブログの投稿" %>
+<h2 class="pb-2"><%= @page_title %></h2>
+
+<%= render "page/errors", object: @blog %>
+
+<%= form_with(model: @blog, local: true, class: "blog-form shadow mb-4 col-sm-8 col-md-5 col-lg-5", multipart: true ) do |form| %>
+  <%= render "form", form: form  %>
+  <div class="submit-actions py-5">
+    <%= form.submit "登録", data: { disable_with: "処理中..." } %>
+  </div>
+<% end %>

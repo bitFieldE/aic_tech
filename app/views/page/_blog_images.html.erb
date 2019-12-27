@@ -1,0 +1,10 @@
+<% if @blog.blog_images.present? %>
+  <h6>画像一覧</h6>
+  <% @blog.blog_images.each do |blog_image| %>
+  <div style="display: inline;" style="position: relative;">
+    <%= image_tag blog_image.variant(resize: "400x400"),
+          class: "p-2", style: "height: 30%; width: 30%;" %>
+    <%= link_to "削除", blog_blog_image_url(@blog, blog_image.blob_id), method: :delete, remote: true %>
+  </div>
+  <% end %>
+<% end %>

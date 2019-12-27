@@ -1,0 +1,8 @@
+<div class="message-wrapper form-inline py-2">
+  <% if message.user_id == session[:user_id] %>
+    <div class="pull-left posted_message shadow px-2"><%= message.content %></div>
+  <% else %>
+    <div class="pull-left received_message shadow px-2"><%= message.content %></div>
+  <% end %>
+  <p class="created_time p-0 ml-2 mt-3 pull-left"><%= message.created_at&.strftime("%H : %M") %></p>
+</div>

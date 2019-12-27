@@ -1,0 +1,47 @@
+
+<% @page_title = "いいかもしてくれた人" %>
+
+<h2 class="py-2"><%= @page_title %></h2>
+<table class="members-list followers col-md-8 col-sm-8 col-xs-6">
+  <thead>
+    <%= render 'page/relation_list' %>
+  </thead>
+  <tbody>
+    <% if @users.present? %>
+    <% @users.each do |user| %>
+      <tr class="all-members shadow">
+        <td>
+          <% if user.profile_picture.attached? %>
+            <%= image_tag user.profile_picture.variant(resize: "300x300"),
+                  style: "height: 50px; width: 50px; border-radius: 50px; object-fit: cover;" %>
+          <% else %>
+            <%= image_tag "/default_user.png",
+                  style: "height: 50px; width: 50px; border-radius: 50px; object-fit: cover;" %>
+          <% end %>
+        </td>
+        <td class="name"><%= link_to user.name, user %></td>
+        <td>
+          <%
+            # a leap year
+            if Time.current.year % 4 && 100 || 4 && 400
+              div = 366
+            else
+              div = 365
+            end
+            @age = (Date.today - user.birthday).to_i/div
+          %>
+          <%= @age %>
+        </td>
+        <td class="voice"><%= user.voice %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="4" class="paginator"><%= paginate @users %></td>
+    </tr>
+    <% else %>
+      <tr class="p-4 no-members shadow">
+        <td colspan="4">まだいいかもした会員はいません</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

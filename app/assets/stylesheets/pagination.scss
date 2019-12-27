@@ -1,0 +1,13 @@
+tr {
+  margin: auto;
+  .pagination {
+    font-size: 110%;
+    letter-spacing: 5px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  .pagination span.current {
+    font-weight: bold;
+  }
+}

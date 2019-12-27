@@ -1,0 +1,35 @@
+
+<tr>
+  <td style="text-align: center;"><%= @blog.title %></td>
+</tr>
+<% if @blog.blog_images.attached? %>
+  <tr class="picture">
+    <% @blog_images.each do |blog_image| %>
+      <td style="text-align: center;">
+        <%= image_tag blog_image.variant(resize: "400x400") %>
+      </td>
+    <% end %>
+  </tr>
+  <% if @blog.blog_images.count > 1 %>
+    <tr>
+      <td><%= paginate @blog_images, remote: true %></td>
+    </tr>
+  <% end %>
+<% end %>
+<tr>
+  <td class="p-3"><%= simple_format(@blog.body) %></td>
+</tr>
+<tr>
+  <td class="p-3" id="good_post_<%= @blog.id %>">
+    <%= render partial: 'page/blog_date', locals: {blog: @blog} %>
+  </td>
+</tr>
+<% if current_user == @blog.author %>
+  <tr>
+    <td class="p-3">
+      <%= link_to "編集", edit_blog_path(@blog) %> |
+      <%= link_to "削除", @blog, method: :delete,
+          data: { confirm: "本当に削除しますか?" } %>
+    </td>
+  </tr>
+<% end %>

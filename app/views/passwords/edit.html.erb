@@ -1,0 +1,26 @@
+<% @page_title = "パスワード変更" %>
+
+<%= render "page/errors", object: @user %>
+
+<center class="py-2"><%= menu_link_to "アカウント詳細に戻る", :account, class: "btn btn-info" %></center>
+<%= form_for @user, as: "account", url: :password, :html => {:class => "change-password shadow"} do |form| %>
+    <h2 class="pt-4 pb-2"><%= @page_title %></h2>
+    <div class="input-text py-3">
+      <%= form.label :current_password %>
+      <br>
+      <%= form.password_field :current_password %>
+    </div>
+    <div class="input-text py-3">
+      <%= form.label :password %>
+      <br>
+      <%= form.password_field :password %>
+    </div>
+    <div class="input-text py-3">
+      <%= form.label :password_confirmation %>
+      <br>
+      <%= form.password_field :password_confirmation %>
+    </div>
+    <div class="actions py-4">
+      <%= form.submit %>
+    </div>
+<% end %>

@@ -1,0 +1,33 @@
+
+<div class="input-field py-3">
+  <%= form.label :title %>
+  <br>
+  <%= form.text_field :title %>
+</div>
+<div class="input-field py-3">
+  <%= form.label :body %>
+  <br>
+  <%= form.text_area :body, rows: 10 %>
+</div>
+<div class="input-field py-3">
+  <%= form.label :released_at, for: "article_released_at_li" %>
+  <br>
+  <%= form.datetime_select :released_at,
+        start_year: 2000, end_year: Time.current.year + 1,
+        use_month_numbers: true %>
+</div>
+<div class="check-field pt-3">
+  <%= form.label :no_expiration %>
+  <%= form.check_box :no_expiration %>
+</div>
+<div class="input-field py-3">
+  <%= form.label :expired_at, for: "article_expired_at_li" %>
+  <br>
+  <%= form.datetime_select :expired_at,
+        start_year: 2000, end_year: Time.current.year + 1,
+        use_month_numbers: true %>
+</div>
+<div class="check-field py-3">
+  <%= form.label :user_list_only %>
+  <%= form.check_box :user_list_only %>
+</div>

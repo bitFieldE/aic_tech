@@ -1,0 +1,13 @@
+<% @page_title = "編集フォーム" %>
+<h2 class="py-1">編集</h2>
+
+<%= render "page/errors", object: @user %>
+
+<center class="pt-2">
+  <%= link_to '詳細', @user %> |
+  <%= link_to '会員ページに戻る', users_path %>
+</center>
+
+<%= form_for @user, as: "account", url: :account, :html => { class: "pt-4 resistration_form shadow" } do |form| %>
+  <%= render 'page/user_form', form: form %>
+<% end %>

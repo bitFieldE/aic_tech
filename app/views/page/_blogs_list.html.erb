@@ -1,0 +1,23 @@
+
+<table class="user-blogs_list col-md-7 col-sm-10 col-xs-10">
+  <% if @blogs.present? %>
+  <% @blogs.each do |blog| %>
+  <tr class="user-blog shadow pt-2">
+    <th class="pl-3 pb-2" style="font-size: 14px;">
+      <%= blog.posted_at.strftime("%Y %m/%d %H:%M")%>
+      <% if (count = blog.likes.count) > 0 && blog.author == current_user %>
+      | <i class="fa fa-heart"></i> <%= count %>
+      <% end %>
+    </th>
+    <td class="p-2" style="text-align: center;"><%= link_to blog.title, blog %></td>
+  </tr>
+  <% end %>
+  <tr style="margin: auto;">
+    <td colspan="4" class="py-2"><%= paginate @blogs %></td>
+  </tr>
+  <% else %>
+  <tr class="shadow" style="text-align: center; font-size: 20px; height: 60px;">
+    <td colspan="4" style="background-color: #f5f5f5;">ブログ記事がありません</td>
+  </tr>
+  <% end %>
+</table>

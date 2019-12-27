@@ -1,0 +1,16 @@
+.error_explanation {
+  height: auto;
+  margin: auto;
+  color: #ff47a3;
+  background-color: #f5f5f5;
+  ul {
+   li {
+      height: 20px;
+      list-style: none;
+      word-break: break-all;
+    }
+  }
+}
+.error-page {
+  text-align: center;
+}

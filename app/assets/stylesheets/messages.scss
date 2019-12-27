@@ -1,0 +1,38 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.chat_room_wrapper {
+  margin: auto;
+  .user_profile {
+    height: 130px;
+    width: 130px;
+    border-radius: 65px;
+    border: 5px solid #FFF;
+    object-fit: cover;
+  }
+  .all_messages {
+    .message-wrapper {
+      .posted_message {
+        border-radius: 0px 7px 7px 7px;
+        width: 80%;
+        background-color: #00ff00;
+        word-break: break-all;
+      }
+      .received_message {
+        border-radius: 7px 0 7px 7px;
+        width: 80%;
+        background-color: #f5f5f5;
+        word-break: break-all;
+      }
+    }
+    .created_time {
+      font-size: 8px;
+      width: 10%;
+    }
+  }
+  .message_form {
+    .inputContent { width: 80%; border-radius: 5px;}
+    .submit_button { width: 10%; border-radius: 5px;}
+  }
+}

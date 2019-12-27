@@ -1,0 +1,28 @@
+<h2>いいねした人</h2>
+
+<% if @liked_users.present? %>
+  <table class="liked_user_list">
+    <tr><td class="py-2"><%= link_to "ブログ詳細に戻る", @blog, class: "btn btn-info" %></td></tr>
+    <% @liked_users.each do |liked_user| %>
+      <tr class="liked_user shadow col-md-4">
+        <th>
+          <% if liked_user.profile_picture.attached? %>
+            <%= image_tag liked_user.profile_picture.variant(resize: "300x300"),
+                    style: "height: 60px; width: 60px; border-radius: 30px 30px; object-fit: cover;",
+                    class: "float-left m-2" %>
+          <% else %>
+            <%= image_tag "/default_user.png",
+                    style: "height: 60px; width: 60px; border-radius: 30px 30px; object-fit: cover;",
+                    class: "float-left m-2" %>
+          <% end %>
+        </th>
+        <td><%= link_to liked_user.name, liked_user, class: "float-left" %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="2"><%= paginate @liked_users %></td>
+    </tr>
+  </table>
+<% else %>
+  <p style="text-align: center;">まだいいねがありません</p>
+<% end %>

@@ -1,0 +1,25 @@
+
+<div class="input-field py-4">
+  <%= form.label :title %>
+  <br>
+  <%= form.text_field :title %>
+</div>
+<div class="input-file py-4">
+  <%= form.label :new_blog_images, "写真(5枚まで添付可能)" %>
+  <br>
+  <%= form.file_field :new_blog_images, id: "new_blog_image", multiple: true %>
+</div>
+<output id="new_blog_images_list"></output>
+<div class="display-all-images py-4" id="input_images">
+  <%= render partial: 'page/blog_images' %>
+</div>
+<div class="input-field py-3">
+  <%= form.label :body %>
+  <br>
+  <%= form.text_area :body, rows: 10 %>
+</div>
+<div class="input-field py-3">
+  <%= form.label :status %>
+  <br>
+  <%= form.select :status, Blog.status_options %>
+</div>

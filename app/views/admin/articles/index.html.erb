@@ -1,0 +1,47 @@
+
+<% @page_title = "ニュースリスト(管理者専用)" %>
+<h2 class="pb-2"><%= @page_title %></h2>
+  <table class="articles-list col-md-8 col-sm-10 col-xs-10">
+    <thead>
+      <% if current_user %>
+      <tr>
+        <th colspan="2">
+          <%= form_tag :search_admin_articles, method: :get, class: "search py-2" do %>
+              <%= text_field_tag "q", params[:q], class: "search-text" %>
+              <%= button_tag type: "submit", class: "submit-button" do %>
+                <i class="fa fa-search"></i>
+              <% end %>
+          <% end %>
+        </th>
+        <th colspan="2">
+          <div class="pb-2 px-2"><%= link_to "ニュースの新規作成", new_admin_article_path, class: "btn btn-primary" %></div>
+        </th>
+      </tr>
+      <% end %>
+      <tr class="menu-list shadow">
+        <th>記事タイトル</th>
+        <th>作成日時</th>
+        <th colspan="2">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @articles.exists? %>
+      <% @articles.each do |article| %>
+        <tr class="all-articles shadow">
+          <td class="title"><%= link_to truncate(article.title, length: 20), [:admin, article] %></td>
+          <td class="datetime"><%= article.released_at.strftime("%Y/%m/%d %H:%M") %></td>
+          <td class="option"><%= link_to "編集", [:edit, :admin, article] %></td>
+          <td class="option"><%= link_to "削除", [:admin, article], method: :delete,
+             data: { confirm: "本当に削除しますか?" } %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="4" class="pt-1"><%= paginate @articles %></td>
+      </tr>
+    <% else %>
+      <tr class="shadow" style="text-align: center; height: 60px; font-size: 15px;">
+        <td colspan="4" style="background-color: #f5f5f5; font-size: 15px;">記事がありません</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>

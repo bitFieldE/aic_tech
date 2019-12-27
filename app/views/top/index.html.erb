@@ -1,0 +1,45 @@
+<h2 class="py-3"></h2>
+
+<section class='single-item shadow'>
+  <div>
+    <%= image_tag "christmas2.png" %>
+  </div>
+  <div>
+    <%= image_tag "couple1.png" %>
+  </div>
+  <div>
+    <%= image_tag "couple2.png" %>
+  </div>
+  <div>
+    <%= image_tag "couple3.png" %>
+  </div>
+</section>
+
+<h2 class="pb-3" style="padding-top: 80px;">最新ニュース</h2>
+
+<table class="top-news col-md-9">
+  <% if @articles.exists? %>
+    <% @articles.each do |article| %>
+      <tbody class="news-text p-2 shadow">
+        <tr>
+          <td><h6 class="pl-3 pt-2" style="font-size: 14px;"><%= article.released_at.strftime("%Y %m/%d %H:%M") %></h6></td>
+        </tr>
+        <tr>
+          <td><h5 class="mt-1"><%= article.title %></h5></td>
+        </tr>
+        <tr>
+          <td>
+            <p class="px-1 pt-2 mb-2 h-110"><%= truncate article.body, length: 50 %></p>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="pb-2" style="text-align: center;"><%= link_to "もっと読む", article %></div></td>
+        </tr>
+      </tbody>
+    <% end %>
+  <% else %>
+    <tr>
+      <td><p style="text-align: center; font-size: 30px;">ニュースがありません</p></td>
+    </tr>
+  <% end %>
+</table>

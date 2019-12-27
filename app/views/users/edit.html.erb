@@ -1,0 +1,14 @@
+<% @page_title = "編集フォーム" %>
+<h2 class="pb-1">編集</h2>
+
+<center class="pb-2">
+  <%= link_to '詳細', :account %> |
+  <%= link_to '会員ページに戻る', users_path %>
+</center>
+
+<%= render "page/errors", object: @user %>
+
+<%= form_with(model: @user, local: true,
+      class: "pt-4 resistration_form shadow col-sm-9 col-md-6 col-lg-4") do |form| %>
+  <%= render "page/user_form", form: form %>
+<% end %>

@@ -1,0 +1,21 @@
+<% @page_title = "ニュース詳細" %>
+<h2 class="pb-2 pt-1"><%= @page_title %></h2>
+
+<table class="article-details shadow mb-4">
+  <tr>
+    <td colspan="2" class="p-3"><%= @article.title %></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="p-3"><%= simple_format(@article.body) %></td>
+  </tr>
+  <tr>
+    <th>会員限定</th>
+    <td><%= @article.user_list_only? ? "★" : "-" %></td>
+  </tr>
+    <tr>
+      <th>ニュース一覧</th>
+      <td>
+        <%= link_to "ニュース一覧", articles_path %>
+      </td>
+    </tr>
+</table>

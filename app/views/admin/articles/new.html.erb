@@ -1,0 +1,12 @@
+<% @page_title = "ニュース記事の作成 管理者用" %>
+<h2 class="py-2"><%= @page_title %></h2>
+
+<%= render "page/errors", object: @article %>
+
+<%= form_with(model: [:admin, @article], local: true,
+        class: "pt-4 mb-5 article_form shadow col-sm-6 col-md-6 col-lg-5") do |form| %>
+  <%= render "form", form: form %>
+  <div class="submit-actions pb-5">
+    <%= form.submit %>
+  </div>
+<% end %>
