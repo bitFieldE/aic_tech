@@ -25,7 +25,5 @@ RSpec.describe SessionsController, type: :controller do
       redirect_to :session
       expect(response).to be_successful
     end
-
-    
   end
 end

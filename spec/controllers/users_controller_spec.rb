@@ -18,7 +18,12 @@ RSpec.describe UsersController, type: :controller do
     }
   }
   before do
-    @user =  create(:user, valid_attributes)
+    @user = create(:user, valid_attributes)
+    #redirect_to 'http://test.host/login'
+  #  visit
+  #  fill_in 'email', with: @user.email
+  #  fill_in 'password', with: @user.password
+  #  click_button 'ログイン'
   end
 
 
@@ -31,6 +36,11 @@ RSpec.describe UsersController, type: :controller do
       get :index
       expect(response.status).to eq(302)
     end
+
+    #it 'should show template index' do
+    #  get :index
+    #  expect(response).to render_template :index
+    #  end
   end
 
   describe 'GET#show' do
@@ -39,15 +49,25 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'should show field' do
-      get :show, params: { id: @user.id }
+      get :show, params: {id: @user.id}
       expect(response.status).to eq(200)
     end
+
+  #  it 'should show template new' do
+  #    get :show, params: {id: @user.id}
+  #    expect(response).to render_template :show
+  #  end
   end
 
   describe 'GET#new' do
     it 'returns success response' do
       expect(:get => "/users/new").to route_to("users#new")
     end
+
+  #  it 'should show template new' do
+  #    get :new
+  #    expect(response).to render_template :new
+  #  end
   end
 
   describe 'GET#edit' do
@@ -59,16 +79,16 @@ RSpec.describe UsersController, type: :controller do
       get :edit, params: { id: @user.id }
       expect(response.status).to eq(302)
     end
+
+  #  it 'should show template edit' do
+  #    get :edit, params: { id: @user.id }
+  #    expect(response).to render_template :edit
+  #  end
   end
 
   describe 'POST#create' do
     it 'returns success response' do
       expect(:post => "/users").to route_to("users#create")
-    end
-
-    it 'should show field' do
-      post "/users"
-      expect(response.status).to eq(201)
     end
   end
 

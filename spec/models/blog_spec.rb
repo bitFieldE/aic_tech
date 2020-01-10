@@ -4,20 +4,7 @@ RSpec.describe Blog, type: :model do
 
   describe 'validation of blog(unit test)' do
     before do
-      @user = create(
-        :user,
-        name: "TestName",
-        email: "TestName@example.com",
-        birthday: "1980-01-01",
-        gender: 1,
-        area: User.areas.keys[5],
-        occupation: User.occupations.keys[5],
-        introduction: "TestText",
-        voice: "TestChat",
-        administrator: 0,
-        password: "test",
-        password_confirmation: "test"
-      )
+      @user = create(:user)
     end
 
     let(:valid_attributes) {
@@ -42,7 +29,7 @@ RSpec.describe Blog, type: :model do
 
     describe 'blog post' do
       before do
-        @blog = Blog.new valid_attributes
+        @blog = build(:blog, valid_attributes)
       end
 
       it {
@@ -118,7 +105,7 @@ RSpec.describe Blog, type: :model do
 
     describe 'blog post' do
       before do
-        @blog =  Blog.new invalid_attributes
+        @blog =  build(:blog, invalid_attributes)
       end
 
       it {
@@ -181,14 +168,6 @@ RSpec.describe Blog, type: :model do
 #        expect(page).to have_css('h2',text:'ブログの投稿')
 #      end
 
-#      it 'input' do
-#        visit '/blogs/new'
-#        fill_in 'blog_title', with: "マッチングプリ2"
-#        fill_in 'blog_body', with: "マッチングアプリを作ってみた"
-#        select '会員限定', from: 'blog_status'
-#        click_button '登録'
-#        expect(page).to have_content('ブログを投稿しました')
-#      end
 
 #      it '' do
 

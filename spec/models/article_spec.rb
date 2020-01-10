@@ -24,7 +24,7 @@ RSpec.describe Article, type: :model do
 
     describe 'article post' do
       before do
-        @article = Article.new valid_attributes
+        @article = build(:article, valid_attributes)
       end
 
       it {
@@ -70,7 +70,7 @@ RSpec.describe Article, type: :model do
 
     describe 'invalid article post' do
       before do
-        @article = Article.new invalid_attributes
+        @article = build(:article, invalid_attributes)
       end
 
       it {
@@ -78,46 +78,4 @@ RSpec.describe Article, type: :model do
       }
     end
   end
-
-  #  before do
-  #    @article = build(:article)
-  #  end
-
-  #  context 'User resistration which all columns are blank' do
-  #      @article.title = ""
-  #      @article.body = ""
-  #      @article.expired_at = ""
-  #      @article.released_at = ""
-  #      @article.user_list_only = ""
-  #      expect(@article).to be_invalid
-  #    end
-
-  #    it 'return false if title is blank' do
-  #      @article.title = ""
-  #      expect(@article).to be_invalid
-  #    end
-
-  #    it 'return true if title is blank or not' do
-  #      @article.expired_at = ""
-  #      expect(@article).to be_valid
-  #    end
-
-
-  #    it 'validate user_list_only is blank or not' do
-  #      @article.user_list_only = ""
-  #      expect(@article).to be_valid
-  #    end
-  #  end
-
-  #  context 'User resistration which all columns are present' do
-  #    it 'all columns are present' do
-  #      expect(@article).to be_valid
-  #    end
-
-  #    it 'nullify expired_at preceeds released_at' do
-  #      @article.expired_at = "#{8.days.ago.advance(days: 3)}"
-  #      @article.released_at = "#{2.days.ago.advance(days: 3)}"
-  #      expect(@article).to be_invalid
-  #    end
-  #  end
 end

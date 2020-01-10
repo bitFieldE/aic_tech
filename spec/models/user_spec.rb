@@ -36,7 +36,7 @@ RSpec.describe User, type: :model do
 
     describe 'user registration' do
       before do
-        @user = User.new valid_attributes
+        @user = build(:user, valid_attributes)
       end
 
       it {
@@ -112,7 +112,7 @@ RSpec.describe User, type: :model do
 
     describe 'an invalid user registration' do
       before do
-        @user = User.new invalid_attributes
+        @user = build(:user, invalid_attributes)
       end
 
       it {
