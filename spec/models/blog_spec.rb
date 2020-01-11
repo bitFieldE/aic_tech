@@ -34,7 +34,7 @@ RSpec.describe Blog, type: :model do
 
       it {
         expect(@blog.valid?).to be_truthy
-        expect { @blog.save }.to change { Blog.count }.by(1)
+        expect {@blog.save}.to change {Blog.count}.by(1)
       }
 
       it 'blank of title' do
@@ -113,65 +113,4 @@ RSpec.describe Blog, type: :model do
       }
     end
   end
-#    before do
-#      @blog = build(:blog)
-#    end
-
-#    context 'blog test(all-blank)' do
-#      it 'nullify all blank' do
-#        @blog.title = ""
-#        @blog.body = ""
-#        @blog.status = ""
-#        @blog.posted_at = ""
-#        expect(@blog).to be_invalid
-#      end
-
-#    end
-
-#    context 'blog test(all-filled)' do
-#      it 'validate all filled' do
-#        expect(@blog).to be_valid
-#      end
-
-#      it 'validate existence of user_id' do
-#        expect(@blog.author.blank?).to eq(false)
-#      end
-
-#    end
-#  end
-
-#  describe "Blog test index/show/new/create/update/destroy" do
-#    before do
-#      @blog = create(:blog)
-#      visit "/login"
-#      fill_in 'email', with: @blog.author.email
-#      fill_in 'password', with: @blog.author.password
-#      click_button 'ログイン'
-#    end
-
-#    context "index" do
-#      it 'go to page MyBlog after login' do
-#        visit :blogs
-#        expect(page).to have_css('h2',text:'マイブログ')
-#    end
-
-#    context 'show' do
-#      it 'show blog' do
-#        visit "/blogs/#{@blog.id}"
-#        expect(page).to have_css('h2',text: @blog.author.name + "さんのブログ")
-#      end
-#    end
-
-#    context 'new' do
-#      it 'create blog' do
-#        visit '/blogs/new'
-#        expect(page).to have_css('h2',text:'ブログの投稿')
-#      end
-
-
-#      it '' do
-
-#      end
-#    end
-#  end
 end

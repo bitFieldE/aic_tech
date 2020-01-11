@@ -31,8 +31,8 @@ class User < ApplicationRecord
   validates       :email, email: { allow_blank: false, message: :invalid_user_email },
                   uniqueness: { case_sensitive: true }
   validates       :gender, :birthday, presence: true
-  validates       :area, presence: true
-  validates       :occupation, presence: true
+  #validates       :area, presence: true
+  validates       :area, :occupation, presence: true
 
   # Password validation
   has_secure_password

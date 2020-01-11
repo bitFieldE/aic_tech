@@ -24,5 +24,6 @@ RSpec.feature "Articles", type: :feature do
     visit "articles/#{@article.id}"
     expect(page).to have_content @article.title
     expect(page).to have_content @article.body
+    expect(page).to have_content @article.user_list_only? ? "★" : "-"
   end
 end
