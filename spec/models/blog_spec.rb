@@ -1,15 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Blog, type: :model do
+  before do
+    @user = create(:user)
+  end
 
   describe 'validation of blog(unit test)' do
-    before do
-      @user = create(:user)
-    end
 
     let(:valid_attributes) {
       {
-        author: @user,
         title: "Test title",
         body: "Test post",
         posted_at: Time.current,
@@ -19,7 +18,6 @@ RSpec.describe Blog, type: :model do
 
     let(:invalid_attributes) {
       {
-        author: @user,
         title: nil,
         body: nil,
         posted_at: nil,
@@ -29,7 +27,7 @@ RSpec.describe Blog, type: :model do
 
     describe 'blog post' do
       before do
-        @blog = build(:blog, valid_attributes)
+        @blog = @user.blogs.build valid_attributes
       end
 
       it {
@@ -105,7 +103,7 @@ RSpec.describe Blog, type: :model do
 
     describe 'blog post' do
       before do
-        @blog =  build(:blog, invalid_attributes)
+        @blog = @user.blogs.build invalid_attributes
       end
 
       it {

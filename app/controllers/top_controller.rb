@@ -9,9 +9,6 @@ class TopController < ApplicationController
   def login
   end
 
-  #def about
-  #end
-
   def bad_request
     raise  ActionController::ParameterMissing, ""
   end

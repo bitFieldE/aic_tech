@@ -4,12 +4,12 @@ FactoryBot.define do
     sequence(:email) {|n|"TestName#{n}@example.com"}
     birthday {"1980-01-01"}
     gender {1}
-    sequence(:area) {|n| User.areas.keys[n]}
-    sequence(:occupation) {|n| User.occupations.keys[n]}
     introduction {"TestText"}
     voice {"TestChat"}
+    sequence(:area) {|n| User.areas.keys[n%2]}
+    sequence(:occupation) {|n| User.occupations.keys[n%2]}
     administrator {1}
-    password {"test"}
-    password_confirmation {"test"}
+    sequence(:password) {|n| "test#{n}"}
+    sequence(:password_confirmation) {|n| "test#{n}"}
   end
 end
