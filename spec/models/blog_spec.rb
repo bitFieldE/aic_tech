@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Blog, type: :model do
-  before do
-    @user = create(:user)
-  end
-
   describe 'validation of blog(unit test)' do
+    before do
+      @user = create(:user)
+    end
 
     let(:valid_attributes) {
       {

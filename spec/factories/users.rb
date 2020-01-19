@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
-    sequence(:name) {|n|"TestName#{n}"}
-    sequence(:email) {|n|"TestName#{n}@example.com"}
+    sequence(:name) {|n| "TestUserName#{n}"}
+    sequence(:email) {|n| "TestUserEmail#{n}@example.com"}
     birthday {"1980-01-01"}
     gender {1}
     introduction {"TestText"}
@@ -9,13 +9,13 @@ FactoryBot.define do
     sequence(:area) {|n| User.areas.keys[n%2]}
     sequence(:occupation) {|n| User.occupations.keys[n%2]}
     administrator {1}
-    sequence(:password) {|n| "test#{n}"}
-    sequence(:password_confirmation) {|n| "test#{n}"}
+    sequence(:password) {|n| "testuser#{n}"}
+    sequence(:password_confirmation) {|n| "testuser#{n}"}
     trait :invalid do
       name {nil}
     end
   end
-  
+
   factory :john, class: User do
     name {"John"}
     email {"John@example.com"}

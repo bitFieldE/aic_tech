@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.feature "Admins::Articles", type: :feature do
   before do
-    @user = create(:user)
+    user = create(:user)
     visit '/login'
-    fill_in 'email', with: @user.email
-    fill_in 'password', with: @user.password
+    fill_in 'email', with: user.email
+    fill_in 'password', with: user.password
     click_button 'ログイン'
     @article = create(:article)
   end
 
   scenario 'index' do
-    visit admins_articles_url
+    visit '/admins/articles'
     expect(page).to have_content '管理者専用 ニュースリスト'
   end
 

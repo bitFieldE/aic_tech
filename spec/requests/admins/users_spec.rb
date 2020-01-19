@@ -37,7 +37,7 @@ RSpec.describe "Admins::Users", type: :request do
 
       it 'display user name on the screen' do
         get user_url user.id
-        expect(response.body).to include 'TestName'
+        expect(response.body).to include 'TestUserName60'
       end
     end
 
@@ -85,7 +85,7 @@ RSpec.describe "Admins::Users", type: :request do
       it 'update user name' do
         expect do
           put admins_user_url user, params: { user: FactoryBot.attributes_for(:john) }
-        end.to change { User.find(user.id).name }.from('TestName65').to('John')
+        end.to change { User.find(user.id).name }.from('TestUserName65').to('John')
       end
 
       it 'redirect to account' do

@@ -13,6 +13,11 @@ RSpec.describe "Admins::Articles", type: :request do
       get admins_articles_path
       expect(response).to have_http_status(200)
     end
+
+    it 'display articles' do
+      get admins_articles_path
+      expect(response.body).to include 'TestTitle'
+    end
   end
 
   describe 'GET #show' do
@@ -96,28 +101,28 @@ RSpec.describe "Admins::Articles", type: :request do
       it 'update article' do
         expect do
           put admins_article_url article, params: { article: FactoryBot.attributes_for(:article_b) }
-        end.to change { Article.find(article.id).title }.from('TestTitle26').to('TestTitle B')
+        end.to change { Article.find(article.id).title }.from('TestTitle27').to('TestTitle B')
       end
 
-      it 'リダイレクトすること' do
+      it 'redirect_to article page' do
         put admins_article_url article, params: { article: FactoryBot.attributes_for(:article_b) }
         expect(response).to redirect_to "/admins/articles/#{article.id}"
       end
     end
 
-    context 'パラメータが不正な場合' do
-      it 'リクエストが成功すること' do
+    context 'invalid parameters' do
+      it 'success request' do
         put admins_article_url article, params: { article: FactoryBot.attributes_for(:article, :invalid) }
         expect(response).to have_http_status(200)
       end
 
-      it 'ユーザー名が変更されないこと' do
+      it 'will not change title' do
         expect do
           put admins_article_url article, params: { article: FactoryBot.attributes_for(:article, :invalid) }
         end.to_not change(Article.find(article.id), :title)
       end
 
-      it 'エラーが表示されること' do
+      it 'display error' do
         put admins_article_url article, params: { article: FactoryBot.attributes_for(:article, :invalid) }
         expect(response.body).to include 'タイトルを入力してください'
       end

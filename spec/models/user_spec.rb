@@ -4,8 +4,8 @@ RSpec.describe User, type: :model do
   describe 'validation User(Unit test)' do
     let(:valid_attributes) {
       {
-        name: "TestName",
-        email: "TestName@example.com",
+        name: "UserName",
+        email: "UserName@example.com",
         birthday: "1980-01-01",
         gender: 1,
         area: User.areas.keys[5],
@@ -13,8 +13,8 @@ RSpec.describe User, type: :model do
         introduction: "TestText",
         voice: "TestChat",
         administrator: 0,
-        password: "test",
-        password_confirmation: "test"
+        password: "username",
+        password_confirmation: "username"
       }
     }
 
