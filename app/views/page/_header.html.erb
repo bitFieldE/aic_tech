@@ -28,7 +28,7 @@
               method: :delete, data: { confirm: "ログアウトしますか？" } %>
         <%= menu_link_to "Matching", :followed_relationships %>
         <% if current_user.administrator? %>
-          <%= menu_link_to "Administrator", :admin_root %>
+          <%= menu_link_to "Administrator", :admins_root %>
         <% end %>
       <% end %>
       <% unless current_user %>

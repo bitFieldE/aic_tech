@@ -14,8 +14,9 @@ RSpec.feature "Tops", type: :feature do
     expect(page).to have_css('.name-display', text: @user.name)
   end
 
-  senario 'top ' do
+  scenario 'top page' do
     visit root_path
-    expect(page).to have_content ''
+    expect(page).to have_content '最新ニュース'
+    expect(page).to have_css('.single-item')
   end
 end

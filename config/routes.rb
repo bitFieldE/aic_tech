@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
+  namespace :admins do
     get 'top/index'
     resources :users do
       get "search", on: :collection
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get "forbidden" => "top#forbidden"
   get "internal_server_error" => "top#internal_server_error"
 
-  namespace :admin do
+  namespace :admins do
     root "top#index"
   end
 

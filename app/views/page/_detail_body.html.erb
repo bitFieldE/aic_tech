@@ -26,7 +26,7 @@
         @age = (Date.today - @user.birthday).to_i/div
       %>
       <%= @age %>  /
-      <%= @user.area %> /  
+      <%= @user.area %> /
       <%= @user.occupation %>
     </td>
   </tr>
@@ -47,13 +47,13 @@
       <th>オプション</th>
       <td>
         <% if controller.kind_of?(AccountsController) %>
-        <%= link_to '編集', edit_user_path(@user) %> |
+        <%= link_to '編集', edit_user_path(@user) if controller.kind_of?(AccountsController) %> |
         <%= link_to "パスワード変更", :edit_password %> |
         <% end %>
         <% if controller.kind_of?(UsersController) || controller.kind_of?(AccountsController) %>
           <%= link_to '会員一覧に戻る', users_path %>
-        <% elsif controller.kind_of?(Admin::UsersController)%>
-          <%= link_to '会員一覧に戻る', admin_users_path %>
+        <% elsif controller.kind_of?(Admins::UsersController)%>
+          <%= link_to '会員一覧に戻る', admins_users_path %>
         <% end %>
       </td>
     </tr>

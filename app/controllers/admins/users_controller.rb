@@ -1,4 +1,4 @@
-class Admin::UsersController < Admin::Base
+class Admins::UsersController < Admins::Base
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -27,29 +27,12 @@ class Admin::UsersController < Admin::Base
   def edit
   end
 
-  # POST /users
-  # POST /users.json
-  def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        session[:user_id] = @user.id
-        format.html { redirect_to @user, notice: '会員を登録しました。' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to [:admin, @user], notice: '会員を更新しました' }
+        format.html { redirect_to [:admins, @user], notice: '会員を更新しました' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -63,7 +46,7 @@ class Admin::UsersController < Admin::Base
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to admin_users_url, notice: 'プロフィールを削除しました' }
+      format.html { redirect_to admins_users_url, notice: 'プロフィールを削除しました' }
       format.json { head :no_content }
     end
   end

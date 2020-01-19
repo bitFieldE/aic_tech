@@ -40,9 +40,9 @@ ja:
         status_public: 公開
     errors:
       messages:
-        invalid_user_name: は半角英数字で入力してください。
-        invalid_user_email: は半角英数字で入力してください。
-        wrong: が正しくありません。
-        expired_at_too_old: は掲載開始日より後の日時にしてください。
-        invalid_image_type: にはJPEG,PNG,GIF,BMP形式の画像を指定してください。
+        invalid_user_name: は半角英数字で入力してください
+        invalid_user_email: は半角英数字で入力してください
+        wrong: が正しくありません
+        expired_at_too_old: は掲載開始日より後の日時にしてください
+        invalid_image_type: にはJPEG,PNG,GIF,BMP形式の画像を指定してください
         invalid_blog_images_count: は5枚までです

@@ -1,4 +1,4 @@
-class Admin::ArticlesController < Admin::Base
+class Admins::ArticlesController < Admins::Base
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   # before_action
 
@@ -37,7 +37,7 @@ class Admin::ArticlesController < Admin::Base
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to [:admin, @article], notice: "ニュースを作成しました" }
+        format.html { redirect_to [:admins, @article], notice: "ニュースを作成しました" }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class Admin::ArticlesController < Admin::Base
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to [:admin, @article], notice: "ニュースを編集しました" }
+        format.html { redirect_to [:admins, @article], notice: "ニュースを編集しました" }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class Admin::ArticlesController < Admin::Base
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to admin_articles_url, notice: "ニュースを削除しました" }
+      format.html { redirect_to admins_articles_url, notice: "ニュースを削除しました" }
       format.json { head :no_content }
     end
   end

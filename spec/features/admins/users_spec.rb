@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Users", type: :feature do
-
+RSpec.feature "Admins::Users", type: :feature do
   before do
     @user = create(:user)
     visit '/login'
@@ -11,16 +10,23 @@ RSpec.feature "Users", type: :feature do
   end
 
   scenario 'index' do
-    visit users_path
-    expect(page).to have_content '会員一覧'
+    visit admins_users_url
+    expect(page).to have_content '管理者専用 会員ページ'
     expect(page).to have_content '年齢'
     expect(page).to have_content '出身地'
     expect(page).to have_content '職業'
     expect(page).to have_content 'つぶやき'
+    expect(page).to have_content '編集'
+    expect(page).to have_content '削除'
+    expect(page).to have_content @user.name
+    expect(page).to have_content @user.area
+    expect(page).to have_content @user.occupation
+    expect(page).to have_content @user.voice
   end
 
   scenario 'show' do
-    visit "/users/#{@user.id}"
+    visit "/admins/users/#{@user.id}"
+    expect(page).to have_content '管理者専用 プロフィールページ'
     expect(page).to have_content @user.name
     expect(page).to have_content @user.area
     expect(page).to have_content @user.occupation
@@ -28,27 +34,9 @@ RSpec.feature "Users", type: :feature do
     expect(page).to have_content @user.introduction
   end
 
-  scenario 'new' do
-    visit root_path
-    find('.droptool').click
-    click_link 'Logout'
-    visit '/users/new'
-    expect(page).to have_content '新規ユーザー登録'
-    expect(page).to have_field 'new_profile_picture'
-    expect(page).to have_field 'user_name'
-    expect(page).to have_field 'user_email'
-    expect(page).to have_field 'user_password'
-    expect(page).to have_field 'user_birthday_1i'
-    expect(page).to have_field 'user_birthday_2i'
-    expect(page).to have_field 'user_birthday_3i'
-    expect(page).to have_checked_field('男性', visible:false)
-    expect(page).to have_field 'user_area'
-    expect(page).to have_field 'user_occupation'
-    expect(page).to have_field 'user_voice'
-  end
-
   scenario 'edit' do
-    visit "/users/#{@user.id}/edit"
+    visit "/admins/users/#{@user.id}/edit"
+    expect(page).to have_content '編集 管理者用'
     expect(page).to have_field 'new_profile_picture'
     expect(page).to have_field 'user_name', with: @user.name
     expect(page).to have_field 'user_email', with: @user.email
@@ -63,8 +51,14 @@ RSpec.feature "Users", type: :feature do
   end
 
   scenario 'update' do
-    visit "/users/#{@user.id}/edit"
+    visit "/admins/users/#{@user.id}/edit"
     click_button '更新する'
-    expect(page).to have_content '会員を更新しました'
+    expect(page).to have_content('会員を更新しました')
+  end
+
+  scenario 'destroy' do
+    visit admins_users_url
+    click_link '削除', match: :first
+    expect(page).to have_content('プロフィールを削除しました')
   end
 end

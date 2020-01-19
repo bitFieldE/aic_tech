@@ -85,7 +85,7 @@
     <%= form.text_area :introduction, {:placeholder => "400字以内で入力してください。"} %>
   </div>
 
-  <% if controller.kind_of?(Admin::UsersController) %>
+  <% if controller.kind_of?(Admins::UsersController) %>
     <div class="check-field py-2">
       <%= form.label :administrator %>
       <%= form.check_box :administrator %>

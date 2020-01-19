@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   # GET /users
   # GET /users.json
-
   def index
     @users = User.fetch_users(current_user).order(created_at: :asc)
       .page(params[:page]).per(10)

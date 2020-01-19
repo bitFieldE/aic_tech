@@ -7,7 +7,7 @@
   <thead>
     <tr>
       <th colspan="7">
-        <%= form_tag :search_admin_users, method: :get, class: "search py-3" do %>
+        <%= form_tag :search_admins_users, method: :get, class: "search py-3" do %>
         <%= text_field_tag "q", params[:q], class: "search-text" %>
         <%= button_tag type: "submit", class: "submit-button" do %>
         <i class="fa fa-search"></i>
@@ -37,7 +37,7 @@
           style: "height: 50px; width: 50px; border-radius: 50px; object-fit: cover;" %>
         <% end %>
       </td>
-      <td class="name"><%= link_to user.name, [:admin, user] %></td>
+      <td class="name"><%= link_to user.name, [:admins, user] %></td>
       <td>
         <%
         # a leap year
@@ -53,8 +53,8 @@
       <td class="voice"><%= user.voice %></td>
       <td class="area"><%= user.area %></td>
       <td class="occupation"><%= user.occupation %></td>
-      <td><%= link_to "編集", [:edit, :admin, user] %></td>
-      <td><%= link_to "削除", [:admin, user], method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+      <td><%= link_to "編集", [:edit, :admins, user] %></td>
+      <td><%= link_to "削除", [:admins, user], method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
     </tr>
     <% end %>
     <tr>
