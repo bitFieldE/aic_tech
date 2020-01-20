@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Blogs", type: :request do
-  let(:user) { FactoryBot.create :user }
+  let(:user) { create(:user) }
 
   before do
     allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
@@ -110,7 +110,7 @@ RSpec.describe "Blogs", type: :request do
   end
 
   describe 'PUT #update' do
-    let(:blog) {create(:blog, author: user)}
+    let(:blog) { create(:blog, author: user) }
 
     context 'valid paramsters' do
       it 'success request' do
@@ -151,7 +151,7 @@ RSpec.describe "Blogs", type: :request do
   end
 
   describe 'DELETE #destroy' do
-    let!(:blog) {create(:blog, author: user)}
+    let!(:blog) { create(:blog, author: user) }
 
     it 'success request' do
       delete blog_url blog

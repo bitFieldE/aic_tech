@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Articles", type: :request do
-  let(:user) { FactoryBot.create :user }
-  let(:article) { FactoryBot.create :article }
+  let(:user) { create(:user) }
+  let(:article) { create(:article) }
 
   before do
     FactoryBot.create :article

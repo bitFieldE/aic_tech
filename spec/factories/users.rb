@@ -28,6 +28,9 @@ FactoryBot.define do
     administrator {1}
     password {"john"}
     password_confirmation {"john"}
+    trait :invalid do
+      name {nil}
+    end
   end
 
   factory :mary, class: User do

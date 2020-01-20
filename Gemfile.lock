@@ -92,6 +92,10 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     diff-lcs (1.3)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     email_validator (1.6.0)
       activemodel
     erubi (1.9.0)
@@ -149,6 +153,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.13.0)
     msgpack (1.3.1)
+    mysql2 (0.5.3)
     nio4r (2.5.2)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
@@ -248,7 +253,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -281,6 +285,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   carrierwave
+  dotenv-rails
   email_validator (~> 1.6)
   factory_bot_rails
   jbuilder (~> 2.5)
@@ -289,6 +294,7 @@ DEPENDENCIES
   kaminari-i18n
   listen (>= 3.0.5, < 3.2)
   mini_magick (~> 4.8)
+  mysql2
   puma (~> 3.11)
   rails (~> 5.2.3)
   rails-controller-testing
@@ -298,7 +304,6 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)

@@ -25,7 +25,7 @@ end
     gender: [1, 2][idx % 2],
     area: User.areas.keys[idx],
     occupation: User.occupations.keys[(idx+3)/2],
-    introduction: "私が国家権力です。🚨",
+    introduction: "私が国家権力です。",
     voice: "シュガーソルト",
     administrator: false,
     password: "DemoUser#{idx + 1}",

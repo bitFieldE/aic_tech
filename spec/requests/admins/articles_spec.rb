@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Admins::Articles", type: :request do
-  let(:user) { FactoryBot.create :user }
+  let(:user) { create(:user) }
 
   before do
     allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
-    FactoryBot.create :article
+    create(:article)
   end
 
   describe "GET #index" do
@@ -22,7 +22,7 @@ RSpec.describe "Admins::Articles", type: :request do
 
   describe 'GET #show' do
     context 'exist article' do
-      let(:article) { FactoryBot.create :article }
+      let(:article) { create(:article) }
 
       it 'success request' do
         get admins_article_url article.id
@@ -50,7 +50,7 @@ RSpec.describe "Admins::Articles", type: :request do
   end
 
   describe 'POST #create' do
-    let(:article) { FactoryBot.create :article }
+    let(:article) { create(:article) }
 
     context 'valid parameters' do
       it 'success request' do
@@ -90,7 +90,7 @@ RSpec.describe "Admins::Articles", type: :request do
   end
 
   describe 'PUT #update' do
-    let(:article) { FactoryBot.create :article }
+    let(:article) { create(:article) }
 
     context 'valid parameters' do
       it 'success request' do

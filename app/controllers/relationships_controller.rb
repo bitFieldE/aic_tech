@@ -11,7 +11,7 @@ class RelationshipsController < ApplicationController
 
   def matched
     @users = current_user.followers.find_all {|follower| current_user.following?(follower) }
-    # ここにチャットルームの機能を追加
+    # add chat_room
     @users = Kaminari.paginate_array(@users).page(params[:page]).per(10)
   end
 

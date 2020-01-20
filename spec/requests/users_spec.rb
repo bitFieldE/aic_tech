@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   describe "GET #index" do
-    let(:user) { FactoryBot.create :user }
+    let(:user) { create(:user) }
 
     before do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
@@ -22,7 +22,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "GET #show" do
-    let(:user) { FactoryBot.create :user }
+    let(:user) { create(:user) }
 
     before do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
@@ -55,7 +55,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe 'GET #edit' do
-    let(:user) { FactoryBot.create :user }
+    let(:user) { create(:user) }
 
     before do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
@@ -116,7 +116,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe 'PUT #update' do
-    let(:user) { FactoryBot.create :user }
+    let(:user) { create(:user) }
 
     before do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
@@ -142,18 +142,18 @@ RSpec.describe "Users", type: :request do
 
     context 'invalid parameters' do
       it 'success request' do
-        put user_url user, params: { user: FactoryBot.attributes_for(:user, :invalid) }
+        put user_url user, params: { user: FactoryBot.attributes_for(:john, :invalid) }
         expect(response).to have_http_status(200)
       end
 
       it 'will not change user name' do
         expect do
-          put user_url user, params: { user: FactoryBot.attributes_for(:user, :invalid) }
+          put user_url user, params: { user: FactoryBot.attributes_for(:john, :invalid) }
         end.to_not change(User.find(user.id), :name)
       end
 
       it 'display errors' do
-        put user_url user, params: { user: FactoryBot.attributes_for(:user, :invalid) }
+        put user_url user, params: { user: FactoryBot.attributes_for(:john, :invalid) }
         expect(response.body).to include 'ユーザー名を入力してください'
         expect(response.body).to include 'ユーザー名は半角英数字で入力してください'
         expect(response.body).to include 'ユーザー名は2文字以上で入力してください'
