@@ -41,24 +41,26 @@
       <i class="fa fa-lock "></i>
       <%= form.password_field :password %>
     </div>
+
+    <div class="input-field py-2">
+      <%= form.label :birthday, for: "user_birthday_li" %>
+      <br>
+      <%= form.date_select :birthday,
+      start_year: 1900, end_year: Time.current.year - 18,
+      use_month_numbers: true %>
+    </div>
   <% end %>
 
-  <div class="input-field py-2">
-    <%= form.label :birthday, for: "user_birthday_li" %>
-    <br>
-    <%= form.date_select :birthday,
-    start_year: 1900, end_year: Time.current.year - 18,
-    use_month_numbers: true %>
-  </div>
-
-  <div class="check-field py-2">
-    <%= User.human_attribute_name(:gender) %>
-    <br>
-    <%= form.label :gender_1 %>
-    <%= form.radio_button :gender, 1 %>
-    <%= form.label :gender_2 %>
-    <%= form.radio_button :gender, 2 %>
-  </div>
+  <% if @user.new_record? %>
+    <div class="check-field py-2">
+      <%= User.human_attribute_name(:gender) %>
+      <br>
+      <%= form.label :gender_1 %>
+      <%= form.radio_button :gender, 1 %>
+      <%= form.label :gender_2 %>
+      <%= form.radio_button :gender, 2 %>
+    </div>
+  <% end %>
 
   <div class="input-field py-2">
     <%= form.label :area %>

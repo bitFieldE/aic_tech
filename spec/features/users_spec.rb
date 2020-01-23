@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "Users", type: :feature do
+  let(:user){create(:tom)}
 
   before do
-    @user = create(:user)
     visit '/login'
-    fill_in 'email', with: @user.email
-    fill_in 'password', with: @user.password
+    fill_in 'email', with: user.email
+    fill_in 'password', with: user.password
     click_button 'ログイン'
   end
 
@@ -20,12 +20,12 @@ RSpec.feature "Users", type: :feature do
   end
 
   scenario 'show' do
-    visit "/users/#{@user.id}"
-    expect(page).to have_content @user.name
-    expect(page).to have_content @user.area
-    expect(page).to have_content @user.occupation
-    expect(page).to have_content @user.voice
-    expect(page).to have_content @user.introduction
+    visit "/users/#{user.id}"
+    expect(page).to have_content user.name
+    expect(page).to have_content user.area
+    expect(page).to have_content user.occupation
+    expect(page).to have_content user.voice
+    expect(page).to have_content user.introduction
   end
 
   scenario 'new' do
@@ -45,26 +45,5 @@ RSpec.feature "Users", type: :feature do
     expect(page).to have_field 'user_area'
     expect(page).to have_field 'user_occupation'
     expect(page).to have_field 'user_voice'
-  end
-
-  scenario 'edit' do
-    visit "/users/#{@user.id}/edit"
-    expect(page).to have_field 'new_profile_picture'
-    expect(page).to have_field 'user_name', with: @user.name
-    expect(page).to have_field 'user_email', with: @user.email
-    expect(page).to have_checked_field '男性'
-    expect(page).to have_select('user_birthday_1i', selected: '1980')
-    expect(page).to have_select('user_birthday_2i', selected: '1')
-    expect(page).to have_select('user_birthday_3i', selected: '1')
-    expect(page).to have_field 'user_introduction', with: @user.introduction
-    expect(page).to have_field 'user_voice', with: @user.voice
-    expect(page).to have_field 'user_area', with: @user.area
-    expect(page).to have_field 'user_occupation', with: @user.occupation
-  end
-
-  scenario 'update' do
-    visit "/users/#{@user.id}/edit"
-    click_button '更新する'
-    expect(page).to have_content '会員を更新しました'
   end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Blogs", type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:tom) }
 
   before do
     allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)

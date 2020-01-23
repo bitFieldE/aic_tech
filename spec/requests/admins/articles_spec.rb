@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Admins::Articles", type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:tom) }
 
   before do
     allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
@@ -101,7 +101,7 @@ RSpec.describe "Admins::Articles", type: :request do
       it 'update article' do
         expect do
           put admins_article_url article, params: { article: FactoryBot.attributes_for(:article_b) }
-        end.to change { Article.find(article.id).title }.from('TestTitle27').to('TestTitle B')
+        end.to change { Article.find(article.id).title }.from('TestTitle').to('TestTitle B')
       end
 
       it 'redirect_to article page' do

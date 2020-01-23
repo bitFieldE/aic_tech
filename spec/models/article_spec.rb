@@ -23,58 +23,54 @@ RSpec.describe Article, type: :model do
     }
 
     describe 'article post' do
-      before do
-        @article = build(:article, valid_attributes)
-      end
+      let(:article){build(:article, valid_attributes)}
 
       it {
-        expect(@article.valid?).to be_truthy
-        expect { @article.save }.to change { Article.count }.by(1)
+        expect(article.valid?).to be_truthy
+        expect { article.save }.to change { Article.count }.by(1)
       }
 
       it 'blank of title' do
-        @article.title = ""
-        expect(@article).to be_invalid
+        article.title = ""
+        expect(article).to be_invalid
       end
 
       it 'blank of body' do
-        @article.body = ""
-        expect(@article).to be_invalid
+        article.body = ""
+        expect(article).to be_invalid
       end
 
       it 'blank of released_at' do
-        @article.released_at = ""
-        expect{@article.valid?}.to raise_error(ArgumentError)
+        article.released_at = ""
+        expect{article.valid?}.to raise_error(ArgumentError)
       end
 
       it 'title within 40 characters' do
-        @article.title = "#{"A" * 40}"
-        expect(@article).to be_valid
+        article.title = "#{"A" * 40}"
+        expect(article).to be_valid
       end
 
       it 'body over 2000 characters' do
-        @article.body = "#{"A" * 2000}"
-        expect(@article).to be_valid
+        article.body = "#{"A" * 2000}"
+        expect(article).to be_valid
       end
 
       it 'title over 40 characters' do
-        @article.title = "#{"A" * 99}"
-        expect(@article).to be_invalid
+        article.title = "#{"A" * 99}"
+        expect(article).to be_invalid
       end
 
       it 'body over 2000 characters' do
-        @article.body = "#{"A" * 9999}"
-        expect(@article).to be_invalid
+        article.body = "#{"A" * 9999}"
+        expect(article).to be_invalid
       end
     end
 
     describe 'invalid article post' do
-      before do
-        @article = build(:article, invalid_attributes)
-      end
-
+      let(:article){build(:article, invalid_attributes)}
+      
       it {
-        expect(@article.valid?).to be_falsey
+        expect(article.valid?).to be_falsey
       }
     end
   end

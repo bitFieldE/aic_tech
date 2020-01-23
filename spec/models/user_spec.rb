@@ -33,90 +33,85 @@ RSpec.describe User, type: :model do
         password_confirmation: nil
       }
     }
-
     describe 'user registration' do
-      before do
-        @user = build(:user, valid_attributes)
-      end
-
+      let(:user){build(:user, valid_attributes)}
+      
       it {
-        expect(@user.valid?).to be_truthy
-        expect { @user.save }.to change { User.count }.by(1)
+        expect(user.valid?).to be_truthy
+        expect { user.save }.to change { User.count }.by(1)
       }
 
       it 'blank of introduction' do
-        @user.introduction = ""
-        expect(@user).to be_valid
+        user.introduction = ""
+        expect(user).to be_valid
       end
 
       it 'blank of voice' do
-        @user.voice = ""
-        expect(@user).to be_valid
+        user.voice = ""
+        expect(user).to be_valid
       end
 
       it 'name within 20 characters' do
-        @user.name = "#{"A" * 20}"
-        expect(@user).to be_valid
+        user.name = "#{"A" * 20}"
+        expect(user).to be_valid
       end
 
       it 'introduction within 400 characters' do
-        @user.introduction = "#{"A" * 400}"
-        expect(@user).to be_valid
+        user.introduction = "#{"A" * 400}"
+        expect(user).to be_valid
       end
 
       it 'blank of name' do
-        @user.name = ""
-        expect(@user).to be_invalid
+        user.name = ""
+        expect(user).to be_invalid
       end
 
       it 'blank of email' do
-        @user.email = ""
-        expect(@user).to be_invalid
+        user.email = ""
+        expect(user).to be_invalid
       end
 
       it 'name over 20 characters' do
-        @user.name = "#{"A" * 99}"
-        expect(@user).to be_invalid
+        user.name = "#{"A" * 99}"
+        expect(user).to be_invalid
       end
 
       it 'introduction over 400 characters' do
-        @user.introduction = "#{"A" * 999}"
-        expect(@user).to be_invalid
+        user.introduction = "#{"A" * 999}"
+        expect(user).to be_invalid
       end
 
       it 'voice over 25 characters' do
-        @user.voice = "#{"A" * 99}"
-        expect(@user).to be_invalid
+        user.voice = "#{"A" * 99}"
+        expect(user).to be_invalid
       end
 
       it 'unexpected input of email' do
-        @user.email = "abcdefghijk"
-        expect(@user).to be_invalid
+        user.email = "abcdefghijk"
+        expect(user).to be_invalid
       end
 
       it 'blank of birthday' do
-         @user.birthday = ""
-         expect(@user).to be_invalid
+         user.birthday = ""
+         expect(user).to be_invalid
       end
 
       it 'blank of area' do
-        @user.area = ""
-        expect(@user).to be_invalid
+        user.area = ""
+        expect(user).to be_invalid
       end
 
       it 'blank of occupation' do
-        @user.occupation = ""
-        expect(@user).to be_invalid
+        user.occupation = ""
+        expect(user).to be_invalid
       end
     end
 
     describe 'an invalid user registration' do
-      before do
-        @user = build(:user, invalid_attributes)
-      end
+      let(:user) {build(:user, invalid_attributes)}
 
       it {
-        expect(@user.valid?).to be_falsey
+        expect(user.valid?).to be_falsey
       }
     end
   end

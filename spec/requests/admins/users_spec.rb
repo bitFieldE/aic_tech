@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "Admins::Users", type: :request do
   describe "GET #index" do
-    let(:user) { create(:user) }
+    let(:user) { create(:tom) }
 
     before do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
-      FactoryBot.create :john
-      FactoryBot.create :mary
+      create(:john)
+      create(:mary)
     end
 
     it 'success request' do
@@ -23,7 +23,7 @@ RSpec.describe "Admins::Users", type: :request do
   end
 
   describe "GET #show" do
-    let(:user) { FactoryBot.create :user }
+    let(:user) { create(:tom) }
 
     before do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
@@ -37,7 +37,7 @@ RSpec.describe "Admins::Users", type: :request do
 
       it 'display user name on the screen' do
         get user_url user.id
-        expect(response.body).to include 'TestUserName60'
+        expect(response.body).to include 'Tom'
       end
     end
 
@@ -49,7 +49,7 @@ RSpec.describe "Admins::Users", type: :request do
   end
 
  describe 'GET #edit' do
-   let(:user) { FactoryBot.create :user }
+   let(:user) { create(:tom) }
 
    before do
      allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
@@ -69,54 +69,54 @@ RSpec.describe "Admins::Users", type: :request do
    end
  end
 
-  describe 'PUT #update' do
-    let(:user) { FactoryBot.create :user }
+ describe 'PUT #update' do
+   let(:user) { create(:tom) }
 
-    before do
-      allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
-    end
+   before do
+     allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
+   end
 
-    context 'valid parameters' do
-      it 'success request' do
-        put admins_user_url user, params: { user: FactoryBot.attributes_for(:john) }
-        expect(response).to have_http_status(302)
-      end
+   context 'valid parameters' do
+     it 'success request' do
+       put admins_user_url user, params: { user: FactoryBot.attributes_for(:john) }
+       expect(response).to have_http_status(302)
+     end
 
-      it 'update user name' do
-        expect do
-          put admins_user_url user, params: { user: FactoryBot.attributes_for(:john) }
-        end.to change { User.find(user.id).name }.from('TestUserName65').to('John')
-      end
+     it 'update user name' do
+       expect do
+         put admins_user_url user, params: { user: FactoryBot.attributes_for(:john) }
+       end.to change { User.find(user.id).name }.from('Tom').to('John')
+     end
 
-      it 'redirect to account' do
-        put admins_user_url user, params: { user: FactoryBot.attributes_for(:john) }
-        expect(response).to redirect_to "/admins/users/#{user.id}"
-      end
-    end
+     it 'redirect to account' do
+       put admins_user_url user, params: { user: FactoryBot.attributes_for(:john) }
+       expect(response).to redirect_to "/admins/users/#{user.id}"
+     end
+   end
 
-    context 'invalid parameters' do
-      it 'success request' do
-        put admins_user_url user, params: { user: FactoryBot.attributes_for(:user, :invalid) }
-        expect(response).to have_http_status(200)
-      end
+   context 'invalid parameters' do
+     it 'success request' do
+       put admins_user_url user, params: { user: FactoryBot.attributes_for(:john, :invalid) }
+       expect(response).to have_http_status(200)
+     end
 
-      it 'will not change user name' do
-        expect do
-          put admins_user_url user, params: { user: FactoryBot.attributes_for(:user, :invalid) }
-        end.to_not change(User.find(user.id), :name)
-      end
+     it 'will not change user name' do
+       expect do
+         put admins_user_url user, params: { user: FactoryBot.attributes_for(:john, :invalid) }
+       end.to_not change(User.find(user.id), :name)
+     end
 
-      it 'display errors' do
-        put admins_user_url user, params: { user: FactoryBot.attributes_for(:user, :invalid) }
-        expect(response.body).to include 'ユーザー名を入力してください'
-        expect(response.body).to include 'ユーザー名は半角英数字で入力してください'
-        expect(response.body).to include 'ユーザー名は2文字以上で入力してください'
-      end
-    end
-  end
+     it 'display errors' do
+       put admins_user_url user, params: { user: FactoryBot.attributes_for(:john, :invalid) }
+       expect(response.body).to include 'ユーザー名を入力してください'
+       expect(response.body).to include 'ユーザー名は半角英数字で入力してください'
+       expect(response.body).to include 'ユーザー名は2文字以上で入力してください'
+     end
+   end
+ end
 
   describe 'DELETE #destroy' do
-    let!(:user) { FactoryBot.create :user }
+    let!(:user) { create(:tom) }
 
     before do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)

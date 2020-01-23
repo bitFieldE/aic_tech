@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     root "top#index"
   end
 
-  resources :users do
+  resources :users, only: [:index, :show, :new, :create] do
     get "search", on: :collection
     resources :blogs, only: [:index]
     member do

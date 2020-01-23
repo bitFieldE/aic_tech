@@ -5,9 +5,9 @@
   <tr>
     <th rowspan="3">
       <% if @user.profile_picture.attached? %>
-        <%= image_tag @user.profile_picture.variant(resize: "400x400"), class: "mr-2" %>
+      <%= image_tag @user.profile_picture.variant(resize: "400x400"), class: "mr-2" %>
       <% else %>
-        <%= image_tag "/default_user.png", class: "mr-2" %>
+      <%= image_tag "/default_user.png", class: "mr-2" %>
       <% end %>
     </th>
     <td>
@@ -17,22 +17,22 @@
   <tr>
     <td>
       <%
-        # a leap year
-        if Time.current.year % 4 && 100 || 4 && 400
-          div = 366
-        else
-          div = 365
-        end
-        @age = (Date.today - @user.birthday).to_i/div
+      # a leap year
+      if Time.current.year % 4 && 100 || 4 && 400
+      div = 366
+      else
+      div = 365
+      end
+      @age = (Date.today - @user.birthday).to_i/div
       %>
       <%= @age %>  /
       <%= @user.area %> /
       <%= @user.occupation %>
     </td>
   </tr>
-    <tr>
-      <td><%= @user.voice %></td>
-    </tr>
+  <tr>
+    <td><%= @user.voice %></td>
+  </tr>
   <tr>
     <th>自己紹介</th>
     <td class="p-2"><%= simple_format(@user.introduction) %></td>
@@ -43,19 +43,19 @@
   </tr>
   <% end %>
   <% if current_user %>
-    <tr>
-      <th>オプション</th>
-      <td>
-        <% if controller.kind_of?(AccountsController) %>
-        <%= link_to '編集', edit_user_path(@user) if controller.kind_of?(AccountsController) %> |
-        <%= link_to "パスワード変更", :edit_password %> |
-        <% end %>
-        <% if controller.kind_of?(UsersController) || controller.kind_of?(AccountsController) %>
-          <%= link_to '会員一覧に戻る', users_path %>
-        <% elsif controller.kind_of?(Admins::UsersController)%>
-          <%= link_to '会員一覧に戻る', admins_users_path %>
-        <% end %>
-      </td>
-    </tr>
+  <tr>
+    <th>オプション</th>
+    <td>
+      <% if controller.kind_of?(AccountsController) %>
+      <%= link_to '編集', edit_account_path if controller.kind_of?(AccountsController) %> |
+      <%= link_to "パスワード変更", :edit_password %> |
+      <% end %>
+      <% if controller.kind_of?(UsersController) || controller.kind_of?(AccountsController) %>
+      <%= link_to '会員一覧に戻る', users_path %>
+      <% elsif controller.kind_of?(Admins::UsersController)%>
+      <%= link_to '会員一覧に戻る', admins_users_path %>
+      <% end %>
+    </td>
+  </tr>
   <% end %>
 </table>

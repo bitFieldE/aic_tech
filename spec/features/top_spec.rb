@@ -1,17 +1,15 @@
 require 'rails_helper'
 
 RSpec.feature "Tops", type: :feature do
-  before do
-    @user = create(:user)
-  end
+  let(:user){create(:tom)}
 
   scenario 'login page' do
     visit '/login'
-    fill_in 'email', with: @user.email
-    fill_in 'password', with: @user.password
+    fill_in 'email', with: user.email
+    fill_in 'password', with: user.password
     click_button 'ログイン'
     expect(page).to have_content 'ログインしました'
-    expect(page).to have_css('.name-display', text: @user.name)
+    expect(page).to have_css('.name-display', text: user.name)
   end
 
   scenario 'top page' do

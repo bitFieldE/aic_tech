@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "Admins::Tops", type: :feature do
+  let(:user) {create(:tom)}
+
   before do
-    user = create(:user)
     visit '/login'
     fill_in 'email', with: user.email
     fill_in 'password', with: user.password
