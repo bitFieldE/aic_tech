@@ -12,8 +12,8 @@ jobs:
           BUNDLER_VERSION: 2.0.1
           RAILS_ENV: test
           DB_HOST: 127.0.0.1
-          DB_USERNAME: 'ryuhei'
-          DB_PASSWORD: 'ryuhei0221'
+          DB_USERNAME: 'root'
+          DB_PASSWORD: ''
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -64,21 +64,6 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-       # Only necessary if app uses webpacker or yarn in some other way
-      - restore_cache:
-          keys:
-            - rails-demo-yarn-{{ checksum "yarn.lock" }}
-            - rails-demo-yarn-
-      - run:
-          name: Yarn Install
-          command: yarn install --cache-folder ~/.cache/yarn
-
-      # Store yarn / webpacker cache
-      - save_cache:
-          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
@@ -86,8 +71,8 @@ jobs:
 
       # Database setup
     #  - run: yarn install
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+    #  - run: bundle exec rake db:create
+    #  - run: bundle exec rake db:schema:load
 
       # run tests!
     #  - run:
