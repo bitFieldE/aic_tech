@@ -71,7 +71,6 @@ jobs:
 
       # Database setup
     #  - run: yarn install
-      - run: mv config/database.yml.ci config/database.yml # ココらへんに追加
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
