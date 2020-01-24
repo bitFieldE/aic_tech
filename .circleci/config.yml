@@ -12,8 +12,8 @@ jobs:
           BUNDLER_VERSION: 2.0.1
           RAILS_ENV: test
           DB_HOST: 127.0.0.1
-          DB_USERNAME: <%= ENV['DATABASE_DEV_NAME'] %>
-          DB_PASSWORD: <%= ENV['DATABASE_DEV_PASSWORD'] %>
+          DB_USERNAME: 'ryuhei'
+          DB_PASSWORD: 'ryuhei0221'
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -59,8 +59,8 @@ jobs:
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
       # Database setup
-      - run: rails db:create
-      - run: rails db:schema:load
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
 
       # run tests!
       - run:
