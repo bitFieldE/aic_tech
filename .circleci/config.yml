@@ -12,15 +12,15 @@ jobs:
           BUNDLER_VERSION: 2.0.1
           RAILS_ENV: test
           DB_HOST: 127.0.0.1
-          DB_USERNAME: 'root'
-          DB_PASSWORD: ''
+          DB_USERNAME: 'ryuhei'
+          DB_PASSWORD: 'ryuhei0221'
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:8.0.19
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: blog_app_test
 
     working_directory: ~/blog_app
 
