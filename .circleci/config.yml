@@ -11,7 +11,7 @@ jobs:
         environment:
           BUNDLER_VERSION: 2.0.1
           RAILS_ENV: test
-          DB_HOST: 127.0.0.1
+          DB_HOST: localhost
           DB_USERNAME: 'root'
           DB_PASSWORD: ''
 
