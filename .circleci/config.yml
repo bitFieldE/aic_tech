@@ -71,20 +71,20 @@ jobs:
 
       # Database setup
     #  - run: yarn install
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+    #  - run: bundle exec rake db:create
+    #  - run: bundle exec rake db:schema:load
 
       # run tests!
-    #  - run:
-    #      name: Rspec
-    #      command: |
-    #        mkdir /tmp/test-results
-    #        TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+      - run:
+          name: Rspec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 
-    #        bundle exec rspec --format progress \
-    #                        --format RspecJunitFormatter \
-    #                        --format progress \
-    #                      $TEST_FILES
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --format progress \
+                          $TEST_FILES
 
       # collect reports
     #  - store_test_results:
