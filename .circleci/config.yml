@@ -19,6 +19,16 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:8.0.19
+        command: |
+          mysqld --default-authentication-plugin=mysql_native_password
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: blog_app_test
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_ROOT_PASSWORD: 'ryuhei0221'
+          MYSQL_USER: 'ryuhei'
+          MYSQL_PASSWORD: 'ryuhei0221'
+          MYSQL_ROOT_HOST: '%'
 
     working_directory: ~/blog_app
 
