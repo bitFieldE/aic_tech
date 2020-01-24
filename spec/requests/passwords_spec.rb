@@ -72,8 +72,7 @@ RSpec.describe "Passwords", type: :request do
 
 
       it 'display errors' do
-        put account_path,
-          params: { account: FactoryBot.attributes_for(:john, :invalid) }
+        put account_path, params: { account: FactoryBot.attributes_for(:john, :invalid) }
         expect(response.body).to include ''
         expect(response.body).to include ''
         expect(response.body).to include ''
