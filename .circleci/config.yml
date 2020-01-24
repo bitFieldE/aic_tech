@@ -12,8 +12,8 @@ jobs:
           BUNDLER_VERSION: 2.0.1
           RAILS_ENV: test
           DB_HOST: 127.0.0.1
-          DB_USERNAME: 'root'
-          DB_PASSWORD: ''
+          DB_USERNAME: <%= ENV['DATABASE_DEV_NAME'] %>
+          DB_PASSWORD: <%= ENV['DATABASE_DEV_PASSWORD'] %>
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
