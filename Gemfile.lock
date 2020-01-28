@@ -48,7 +48,7 @@ GEM
     autoprefixer-rails (9.7.4)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.268.0)
+    aws-partitions (1.269.0)
     aws-sdk-core (3.89.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -219,7 +219,7 @@ GEM
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     ruby_dep (1.5.0)
-    rubyzip (2.0.0)
+    rubyzip (2.1.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -313,4 +313,4 @@ RUBY VERSION
    ruby 2.6.0p0
 
 BUNDLED WITH
-   2.1.4
+   2.1.2
