@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Relationships", type: :request do
+RSpec.describe 'Relationships', type: :request do
   describe 'GET #followers' do
     let(:user){create(:mary)}
     before do
@@ -13,7 +13,7 @@ RSpec.describe "Relationships", type: :request do
     end
   end
 
-  describe "GET #followed" do
+  describe 'GET #followed' do
     let(:user){create(:mary)}
     before do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
@@ -74,12 +74,20 @@ RSpec.describe "Relationships", type: :request do
 
     before do
       allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: female_user.id)
-      create(:relationship, follower_id: female_user.id, followed_id: male_user.id)
+      female_user.follow(male_user)
+      @relationship = female_user.active_relationships.find_by(followed_id: male_user.id)
     end
 
     it 'success request' do
-      delete relationships_url male_user
+      delete relationship_url(@relationship), xhr: true
       expect(response).to have_http_status(200)
+    end
+
+    it 'invalid request' do
+      @relationship = nil
+      expect do
+        delete relationship_url(@relationship), xhr: true
+      end.to raise_error ActionController::UrlGenerationError
     end
   end
 end

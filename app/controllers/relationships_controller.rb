@@ -40,5 +40,4 @@ class RelationshipsController < ApplicationController
     #  delete flash content
     flash.discard if request.xhr?
   end
-
 end
