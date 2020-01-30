@@ -1,4 +1,4 @@
-# README
+# aic_tech(ブログ投稿型マッチングアプリ)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
