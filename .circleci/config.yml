@@ -70,7 +70,7 @@ jobs:
 
 
       # Database setup
-      - run: yarn install
+      #- run: yarn install
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
