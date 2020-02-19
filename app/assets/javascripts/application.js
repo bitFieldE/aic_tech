@@ -30,9 +30,9 @@ $(document).on("turbolinks:load", function() {
   setTimeout("$('.notice').fadeOut('slow')", 1000);
 
   var WindowHeight = $(window).height();
-  console.log(WindowHeight);
+  //console.log(WindowHeight);
   var TotalHeight = $('main').height() + $('header').height() + $('footer').height();
-  console.log(TotalHeight);
+  //console.log(TotalHeight);
   if (TotalHeight < WindowHeight) {
     $('main').css({'height': WindowHeight + 'px'})
   }

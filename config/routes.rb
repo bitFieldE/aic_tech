@@ -38,21 +38,15 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
-    resources :chat_rooms, only: [:show] do
-      resources :messages
-    end
-    post "chat_rooms/create/:id", to: "chat_rooms#create"
   end
-
-  resources :chat_rooms, only: [:show] do
-    resources :messages
-  end
-  # Serve websocket cable requests in-process
-  mount ActionCable.server => '/cable'
 
   resource :session,  only: [:create, :destroy, :login]
   resource :account,  only: [:show, :edit, :update]
   resource :password, only: [:show, :edit, :update]
+  resources :messages, only: [:show, :create]
+  namespace :api do
+    resources :messages, only: :index, defaults: { format: 'json' }
+  end
   resources :relationships do
     collection do
       get :followers, :followed, :matched

@@ -30,10 +30,8 @@ class RelationshipsController < ApplicationController
   def destroy
     @user = Relationship.find(params[:id]).followed
     if @user.following?(current_user)
-      @room_A = ChatRoom.find_by(name: "chat_room@#{@user.id}@#{current_user.id}")
-      @room_B = ChatRoom.find_by(name: "chat_room@#{current_user.id}@#{@user.id}")
-      @chat_room = @room_A || @room_B
-      @chat_room.destroy
+      @messages = Message.where("receiver_id = ? OR receiver_id = ?",current_user.id, @user.id)
+      @messages.each {|message| message.destroy}
     end
     current_user.unfollow(@user)
     flash[:notice] = "いいかもリストからはずしました"

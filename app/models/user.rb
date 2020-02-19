@@ -67,8 +67,8 @@ class User < ApplicationRecord
   attribute        :remove_profile_picture, :boolean
   scope            :fetch_users, ->(user) { where("gender <> ?", user.gender)}
 
-  # ChatRooms
-  has_many         :messages, dependent: :destroy
+  # User messages
+  has_many         :messages,   dependent: :destroy
 
   before_save do
     if new_profile_picture

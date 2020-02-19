@@ -35,7 +35,7 @@
         </td>
         <td class="voice"><%= user.voice %></td>
         <td class="talk-room">
-          <%= link_to "/users/#{user.id}/chat_rooms/create/#{user.id}", method: :post, style: "font-size: 20px;" do %>
+          <%= link_to "/messages/#{user.id}", style: "font-size: 20px;" do %>
             <i class="fa fa-comment-o p-2"></i>
           <% end %>
         </td>
