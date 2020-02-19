@@ -58,8 +58,6 @@ $(document).on('turbolinks:load', function(){
           });
 
           $.each(alignedMessages, function(index, message){
-            console.log(message.my_content);
-            console.log(message.my_content);
             if (message.my_content) {
               var html =
               `<div class="message-wrapper form-inline py-2">
@@ -84,6 +82,11 @@ $(document).on('turbolinks:load', function(){
         });
       } else {
         clearInterval(autoReload)
+      }
+      var WindowHeight = $(window).height();
+      var TotalHeight = $('main').height() + $('header').height() + $('footer').height();
+      if (TotalHeight < WindowHeight) {
+        $('main').css({'height': WindowHeight + 'px'})
       }
   }
   var time = 3000
