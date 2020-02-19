@@ -11,7 +11,6 @@ $(document).on('turbolinks:load', function(){
 
     return html;
   }
-
   // message post
   $('.message_form').on('submit', function(e){
     e.preventDefault();
@@ -87,9 +86,10 @@ $(document).on('turbolinks:load', function(){
       var TotalHeight = $('main').height() + $('header').height() + $('footer').height();
       if (TotalHeight < WindowHeight) {
         $('main').css({'height': WindowHeight + 'px'})
+      } else if ($('main').height() < $('.chat_room_wrapper').height()){
+        $('main').css({'height': $('main').height() + 'px'})
       }
   }
   var time = 3000
   autoReload = setInterval(refreshingPartial, time)
-
 });
