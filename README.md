@@ -1,24 +1,9 @@
-# README
+# aic_tech(ブログ投稿型マッチングアプリ)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Github
 
-Things you may want to cover:
+https://github.com/RkAirforce/aic_tech
 
-* Ruby version
+# 概要/詳細
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*SNSのように日常の生活やつぶやきの投稿を可能にしたマッチングアプリを製作しました。
