@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   def search
     @users = User.fetch_users(current_user).search(params[:q])
       .page(params[:page]).per(10)
+    #render json: @users
     render "index"
   end
 
