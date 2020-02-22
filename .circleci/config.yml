@@ -72,6 +72,8 @@ jobs:
       # Database setup
     #  - run: rm ./config/database.yml
     #  - run: mv ./config/database.yml ./config/database.yml
+      - run: mysql -u root
+      - run: mysql.server start
       - run: bundle exec rake db:create RAILS_ENV=test
       - run: bundle exec rake db:migrate RAILS_ENV=test
 
