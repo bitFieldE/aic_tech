@@ -20,6 +20,9 @@ jobs:
       - image: circleci/mysql:8.0.19
         environment:
           MYSQL_DATABASE: blog_app_test
+          MYSQL_USER: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_HOST: %
 
     working_directory: ~/blog_app
 
@@ -70,29 +73,27 @@ jobs:
 
 
       # Database setup
-    #  - run: rm ./config/database.yml
-    #  - run: mv ./config/database.yml ./config/database.yml
-    #  - run: bundle exec rake db:create RAILS_ENV=test
-    #  - run: bundle exec rake db:migrate RAILS_ENV=test
+      - run: bundle exec rake db:create RAILS_ENV=test
+      - run: bundle exec rake db:migrate RAILS_ENV=test
 
       # run tests!
-    #  - run:
-    #      name: Rspec
-    #      command: |
-    #        mkdir /tmp/test-results
-    #        TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+      - run:
+          name: Rspec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 
-    #        bundle exec rspec --format progress \
-    #                        --format RspecJunitFormatter \
-    #                        --format progress \
-    #                      $TEST_FILES
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --format progress \
+                          $TEST_FILES
 
       # collect reports
-    #  - store_test_results:
-    #      path: /tmp/test-results
-    #  - store_artifacts:
-    #      path: /tmp/test-results
-    #      destination: test-results
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
 
       # run rubocop
     #  - run:
