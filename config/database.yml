@@ -28,6 +28,7 @@ test:
   username: 'root'
   password: ''
   host: '127.0.0.1'
+  socket: /tmp/mysql.sock
   # database: db/test.sqlite3
 
 production:
