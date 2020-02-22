@@ -25,6 +25,9 @@ development:
 test:
   <<: *default
   database: blog_app_test
+  username: 'root'
+  password: ''
+  host: '127.0.0.1'
   # database: db/test.sqlite3
 
 production:
