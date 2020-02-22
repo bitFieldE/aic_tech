@@ -3,6 +3,7 @@
 
 $(document).on("turbolinks:load", function() {
   $('#new_profile_picture').change(function(e){
+    e.preventDefault();
     // Aquire file object
     var file = e.target.files[0];
     var reader = new FileReader();
