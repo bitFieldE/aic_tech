@@ -1,26 +1,28 @@
 <table class="chat_room_wrapper col-md-5 pt-4">
   <tr>
     <td>
-      <h1>
-        <% if @user.profile_picture.attached? %>
-          <%= image_tag @user.profile_picture.variant(resize: "400x400"),
-          class: "user_profile" %>
-        <% else %>
-          <%= image_tag "/default_user.png", class: "user_profile" %>
-        <% end %>
-        <%= @user.name %>
-      </h1>
-      <br />
-      <%= link_to "マッチング一覧に戻る", :matched_relationships, class: "btn btn-info" %>
+      <div class="pb-4">
+        <h1>
+          <% if @user.profile_picture.attached? %>
+            <%= image_tag @user.profile_picture.variant(resize: "400x400"),
+            class: "user_profile" %>
+          <% else %>
+            <%= image_tag "/default_user.png", class: "user_profile" %>
+          <% end %>
+          <%= @user.name %>
+        </h1>
+        <br />
+        <%= link_to "マッチング一覧に戻る", :matched_relationships, class: "btn btn-info" %>
+      </div>
     </td>
   </tr>
-    <tr>
-      <td>
-        <div id="messages" class="all_messages">
-          <%= render @messages %>
-        </div>
-      </td>
-    </tr>
+  <tr>
+    <td>
+      <div id="messages" class="all_messages py-2" style="height: 500px; overflow: scroll;">
+        <%= render @messages %>
+      </div>
+    </td>
+  </tr>
   <tr>
     <td class="text-align: center;">
       <%= form_with(model: @message, class: "message_form py-3", local: true) do |m| %>

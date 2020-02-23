@@ -8,8 +8,7 @@ $(document).on('turbolinks:load', function(){
         ${message.created_at}
       </p>
      </div>`
-
-    return html;
+    if (content){return html;}
   }
   // message post
   $('.message_form').on('submit', function(e){
@@ -29,6 +28,7 @@ $(document).on('turbolinks:load', function(){
       $('.form-submit').attr('disabled', false);
       $('#message_content').val('');
       $('.all_messages').append(html);
+      $('.all_messages').animate({scrollTop: $('.all_messages')[0].scrollHeight}, 'fast');
       return false
     })
     .fail(function(data){
@@ -74,20 +74,25 @@ $(document).on('turbolinks:load', function(){
                 </p>
                </div>`
             }
-            $('#messages').append(html);
+            $('.all_messages').append(html);
           })
+
+          $('.all_messages').hover(
+            function() {
+              $('.all_messages').addClass('scroll')
+            },
+            function() {
+              $('.all_messages').removeClass('scroll')
+            }
+          );
+          if (! $('.all_messages').hasClass('scroll')){
+            $('.all_messages').animate({scrollTop: $('.all_messages')[0].scrollHeight}, 'fast');
+          }
         })
         .fail(function() {
         });
       } else {
         clearInterval(autoReload)
-      }
-      var WindowHeight = $(window).height();
-      var TotalHeight = $('main').height() + $('header').height() + $('footer').height();
-      if (TotalHeight < WindowHeight) {
-        $('main').css({'height': WindowHeight + 'px'})
-      } else if ($('main').height() < $('.chat_room_wrapper').height()){
-        $('main').css({'height': $('main').height() + 'px'})
       }
   }
   var time = 3000

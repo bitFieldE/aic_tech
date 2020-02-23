@@ -30,7 +30,9 @@ class RelationshipsController < ApplicationController
   def destroy
     @user = Relationship.find(params[:id]).followed
     if @user.following?(current_user)
-      @messages = Message.where("receiver_id = ? OR receiver_id = ?",current_user.id, @user.id)
+      my_msg = current_user.messages.where("receiver_id = ?", @user.id)
+      matched_msg = @user.messages.where("receiver_id = ?", current_user.id)
+      @messages = my_msg + matched_msg
       @messages.each {|message| message.destroy}
     end
     current_user.unfollow(@user)
