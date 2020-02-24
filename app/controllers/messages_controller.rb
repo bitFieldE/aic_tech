@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
   before_action :login_required
 
-  def show
-    @user = User.find_by(id: params[:id])
+  def index
+    @user = User.find_by(id: params[:user_id])
     @my_messages = current_user.messages
                     .where("receiver_id = ?", @user.id)
                     .order("created_at DESC")
@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
         format.json
       end
     else
-      render :show
+      render :index
     end
   end
 

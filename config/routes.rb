@@ -38,15 +38,15 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :messages, only: [:index, :create]
+    namespace :api do
+      resources :messages, only: :index
+    end
   end
 
   resource :session,  only: [:create, :destroy, :login]
   resource :account,  only: [:show, :edit, :update]
   resource :password, only: [:show, :edit, :update]
-  resources :messages, only: [:show, :create]
-  namespace :api do
-    resources :messages, only: :index, defaults: { format: 'json' }
-  end
   resources :relationships do
     collection do
       get :followers, :followed, :matched

@@ -25,7 +25,7 @@
   </tr>
   <tr>
     <td class="text-align: center;">
-      <%= form_with(model: @message, class: "message_form py-3", local: true) do |m| %>
+      <%= form_with(model: [@user, @message], class: "message_form py-3", local: true) do |m| %>
         <%= m.hidden_field :receiver_id, value: @user.id %>
         <%= m.text_field :content, class: "inputContent" %>
         <%= m.button :type => "submit", class: "form-submit", style: "border-radius: 5px;" do %>
